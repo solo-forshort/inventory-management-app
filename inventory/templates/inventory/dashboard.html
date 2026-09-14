@@ -1,0 +1,48 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1 class="mb-4">Dashboard</h1>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Products</h5>
+                <p class="card-text fs-2">{{ total_products }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Categories</h5>
+                <p class="card-text fs-2">{{ total_categories }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-3 border-danger">
+            <div class="card-body">
+                <h5 class="card-title text-danger">Low Stock Items</h5>
+                <p class="card-text fs-2">{{ low_stock_products|length }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if low_stock_products %}
+<h3 class="mt-4">⚠ Products needing reorder</h3>
+<table class="table table-striped">
+    <thead><tr><th>Name</th><th>SKU</th><th>In Stock</th><th>Reorder Level</th></tr></thead>
+    <tbody>
+    {% for product in low_stock_products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.sku }}</td>
+            <td>{{ product.quantity_in_stock }}</td>
+            <td>{{ product.reorder_level }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

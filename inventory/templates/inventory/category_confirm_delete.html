@@ -1,0 +1,11 @@
+{% extends 'inventory/base.html' %}
+{% block title %}Delete Category{% endblock %}
+{% block content %}
+<h1 class="mb-4">Delete Category</h1>
+<p>Are you sure you want to delete <strong>{{ object.name }}</strong>? This cannot be undone.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'category-list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
