@@ -44,9 +44,29 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('category-list')
 
 
-# ---- Product views (list only for now — full CRUD comes in the next feature branch) ----
+# ---- Product CRUD ----
 
 class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = 'inventory/product_list.html'
     context_object_name = 'products'
+
+
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    model = Product
+    fields = ['name', 'sku', 'category', 'supplier', 'description', 'unit_price', 'quantity_in_stock', 'reorder_level', 'is_active']
+    template_name = 'inventory/product_form.html'
+    success_url = reverse_lazy('product-list')
+
+
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
+    model = Product
+    fields = ['name', 'sku', 'category', 'supplier', 'description', 'unit_price', 'quantity_in_stock', 'reorder_level', 'is_active']
+    template_name = 'inventory/product_form.html'
+    success_url = reverse_lazy('product-list')
+
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    model = Product
+    template_name = 'inventory/product_confirm_delete.html'
+    success_url = reverse_lazy('product-list')
