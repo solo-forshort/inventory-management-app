@@ -1,48 +1,59 @@
 {% extends 'inventory/base.html' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-<h1 class="mb-4">Dashboard</h1>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Total Products</h5>
-                <p class="card-text fs-2">{{ total_products }}</p>
-            </div>
-        </div>
+<div class="page-head">
+    <div>
+        <h1>Dashboard</h1>
+        <p class="page-sub">What needs your attention today.</p>
     </div>
-    <div class="col-md-4">
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Categories</h5>
-                <p class="card-text fs-2">{{ total_categories }}</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card mb-3 border-danger">
-            <div class="card-body">
-                <h5 class="card-title text-danger">Low Stock Items</h5>
-                <p class="card-text fs-2">{{ low_stock_products|length }}</p>
-            </div>
-        </div>
-    </div>
+    <a href="{% url 'product-add' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>Add product</a>
 </div>
 
-{% if low_stock_products %}
-<h3 class="mt-4">⚠ Products needing reorder</h3>
-<table class="table table-striped">
-    <thead><tr><th>Name</th><th>SKU</th><th>In Stock</th><th>Reorder Level</th></tr></thead>
-    <tbody>
-    {% for product in low_stock_products %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.sku }}</td>
-            <td>{{ product.quantity_in_stock }}</td>
-            <td>{{ product.reorder_level }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
-{% endif %}
+<section class="stat-strip" aria-label="Summary">
+    <a class="stat" href="{% url 'product-list' %}">
+        <span class="stat-label">Products</span>
+        <span class="stat-value">{{ total_products }}</span>
+    </a>
+    <a class="stat" href="{% url 'category-list' %}">
+        <span class="stat-label">Categories</span>
+        <span class="stat-value">{{ total_categories }}</span>
+    </a>
+    <div class="stat{% if low_stock_products %} stat-alert{% endif %}">
+        <span class="stat-label">Low stock</span>
+        <span class="stat-value">{{ low_stock_products|length }}</span>
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-head">
+        <h2>Needs reordering</h2>
+        {% if low_stock_products %}<span class="count-pill">{{ low_stock_products|length }}</span>{% endif %}
+    </div>
+    {% if low_stock_products %}
+    <ul class="reorder-list">
+        {% for product in low_stock_products %}
+        <li class="reorder-item">
+            <div class="reorder-main">
+                <a class="reorder-name" href="{% url 'product-edit' product.pk %}">{{ product.name }}</a>
+                <span class="reorder-sku">{{ product.sku }}</span>
+            </div>
+            <div class="reorder-stock">
+                <strong>{{ product.quantity_in_stock }}</strong>
+                <span>in stock &middot; reorder at {{ product.reorder_level }}</span>
+            </div>
+            {% if product.quantity_in_stock == 0 %}
+                <span class="chip chip-danger">Out of stock</span>
+            {% else %}
+                <span class="chip chip-warn">Low</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="empty-state">
+        <i class="bi bi-check2-circle"></i>
+        <p>Nothing needs reordering. Stock levels look healthy.</p>
+    </div>
+    {% endif %}
+</section>
 {% endblock %}
