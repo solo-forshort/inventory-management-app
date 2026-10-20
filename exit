@@ -1,0 +1,60 @@
+[33mcommit de47483bb5ce1fc140a01567954c0f17371c2a6b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Thu Oct 15 10:55:35 2026 +0000
+
+    Save requirements.txt as plain ASCII instead of UTF-16
+
+[33mcommit b6a3b0ed3d09386fb06650088cc09f7a46fe756c[m[33m ([m[1;33mtag: [m[1;33mv1.1[m[33m)[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Fri Oct 2 12:00:31 2026 +0000
+
+    Add missing registration/login.html template
+
+[33mcommit fa56c59942ac6f37c49b5f18ba990398769b9fd0[m
+Merge: 59907a5 1725f28
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Fri Oct 2 11:06:28 2026 +0000
+
+    Merge branch 'main' of https://github.com/solo-forshort/inventory-management-app
+
+[33mcommit 59907a534c4ea38cb635ba7e1fd64f51932229ea[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Fri Oct 2 11:03:06 2026 +0000
+
+    Add requirements.txt for deployment
+
+[33mcommit 1725f28eb1295e833767edf21eae022a4222ece4[m
+Author: solo-forshort <159397712+solo-forshort@users.noreply.github.com>
+Date:   Wed Sep 30 13:03:18 2026 +0000
+
+    Add or update the Azure App Service build and deployment workflow config
+
+[33mcommit 0fc05be7d59aa1aa28496bd26a251d33b588db08[m[33m ([m[1;33mtag: [m[1;33mv1[m[33m)[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Sun Sep 20 20:20:02 2026 +0000
+
+    Add full Product CRUD: views, URLs, and templates
+
+[33mcommit ac17800cdb2327c6061ced80c66c50a84f14edc7[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Sat Sep 19 00:16:30 2026 +0000
+
+    WIP: add Product CRUD view classes (urls and templates pending)
+
+[33mcommit bc45d9862c3bbdf586ab3030486e9d89aa07958a[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Mon Sep 14 21:35:52 2026 +0000
+
+    Add Category CRUD views, templates, and dashboard; wire up project URLs and login
+
+[33mcommit 80881d71ebe582ce1d46b0055e243d52fae2701f[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Mon Sep 14 16:18:09 2026 +0000
+
+    Add Django admin config for Category and Product with low-stock indicator
+
+[33mcommit 1324b1b6e3cf7ce1713657c0ad3022d1da6c668e[m
+Author: Solomon Asare <solomonasare0551@gmail.com>
+Date:   Mon Sep 14 15:48:07 2026 +0000
+
+    Initial project scaffold: Django project, app, settings, models
